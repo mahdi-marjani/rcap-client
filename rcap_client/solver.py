@@ -12,6 +12,7 @@ class RecaptchaSolver:
     def __init__(self, browser: Browser, detector: Detector):
         self.browser = browser
         self.detector = detector
+        self.last_recaptcha_token = None
 
 
     def solve(self):
@@ -88,6 +89,14 @@ class RecaptchaSolver:
 
     def _analyze_challenge(self):
         self._switch_to_challenge_frame()
+
+        recaptcha_token_input = self.browser.find_element(
+            f'//input[@id="recaptcha-token" and not(@value="{self.last_recaptcha_token}")]',
+            10,
+            'present'
+        )
+
+        self.last_recaptcha_token = self.browser.get_attribute(recaptcha_token_input, 'value')
 
         title_wrapper = self.browser.find_element('//*[@id="rc-imageselect"]', 10, 'present')
 

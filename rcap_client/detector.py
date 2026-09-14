@@ -1,4 +1,5 @@
 from .api import get_models, detect_cells
+import random
 
 class Detector:
 
@@ -13,8 +14,12 @@ class Detector:
         )
 
     def detect(self, image_array, grid, target_text):
-        return detect_cells(
+        answers = detect_cells(
             image_array,
             grid,
             target_text,
         )
+
+        random.shuffle(answers)
+
+        return answers

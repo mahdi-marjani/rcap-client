@@ -7,9 +7,7 @@
 Install via pip:
 
 ```
-
 pip install rcap-client
-
 ```
 
 ## Usage

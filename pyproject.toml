@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rcap-client"
-version = "2.0.0"
-description = "rcap client for solving reCAPTCHA challenges."
+version = "3.0.0"
+description = "rcap browser interactions for solving reCAPTCHA challenges."
 authors = [{name = "Mahdi Marjani", email = "mahdi.marjani.dev@gmail.com"}]
 license = "MIT"
 readme = "README.md"

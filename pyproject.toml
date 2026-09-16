@@ -15,7 +15,6 @@ dependencies = [
     "pillow>=10,<13",
     "requests>=2.32.5,<3",
     "selenium>=4.20,<5",
-    "webdriver-manager>=4.0.2,<5",
     "playwright>=1.62,<2",
 ]
 

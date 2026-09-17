@@ -73,11 +73,16 @@ class RecaptchaSolver:
         for _ in range(200):
             try:
                 self._switch_to_challenge_frame()
-                self.browser.wait_for('//*[@id="recaptcha-reload-button"]', 0.1, 'clickable')
+                self.browser.wait_for(
+                    '//button[@id="recaptcha-verify-button" and not(contains(@class, "rc-button-default-disabled"))]',
+                    0.1,
+                    'present'
+                )
                 return False
             except Exception:
                 if self._is_checkbox_checked():
                     return True
+
         return False
 
 
@@ -244,21 +249,7 @@ class RecaptchaSolver:
     def _verify(self):
         self.browser.click('//*[@id="recaptcha-verify-button"]', 10)
 
-
-        for _ in range(200):
-            try:
-                self._switch_to_challenge_frame()
-                self.browser.wait_for(
-                    '//button[@id="recaptcha-verify-button" and not(contains(@class, "rc-button-default-disabled"))]',
-                    0.1,
-                    'present'
-                )
-                return False
-            except Exception:
-                if self._is_checkbox_checked():
-                    return True
-
-        return False
+        return self._wait_until_challenge_ready_or_solved()
 
 
     def _recover_from_error(self):

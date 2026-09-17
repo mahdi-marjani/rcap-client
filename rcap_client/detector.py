@@ -1,5 +1,4 @@
 from .api import get_models, detect_cells
-import random
 
 class Detector:
 
@@ -19,7 +18,5 @@ class Detector:
             grid,
             target_text,
         )
-
-        random.shuffle(answers)
 
         return answers
